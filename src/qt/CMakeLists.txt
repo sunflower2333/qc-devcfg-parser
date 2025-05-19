@@ -36,6 +36,7 @@ else()
         )
 endif()
 
+target_link_libraries(qc_devcfg_parser_qt PRIVATE -Wl,--start-group -Wl,--whole-archive)
 target_link_libraries(
         qc_devcfg_parser_qt
         PRIVATE
@@ -44,6 +45,7 @@ target_link_libraries(
         qc_devcfg_parser_struct
         qc_devcfg_parser_po
 )
+target_link_libraries(qc_devcfg_parser_qt PRIVATE -Wl,--no-whole-archive -Wl,--end-group)
 
 if(ENABLE_STATIC)
         target_link_options(qc_devcfg_parser_qt PRIVATE -static)
