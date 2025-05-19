@@ -36,7 +36,7 @@ else()
 	)
 endif()
 
-target_link_libraries(qc_devcfg_parser_qt PRIVATE)
+target_link_libraries(qc_devcfg_parser_qt PRIVATE, -Wl,--whole-archive)
 target_link_libraries(
 	qc_devcfg_parser_qt
 	PRIVATE
@@ -47,7 +47,7 @@ target_link_libraries(
  	regex
   	pcre
 )
-target_link_libraries(qc_devcfg_parser_qt PRIVATE )
+target_link_libraries(qc_devcfg_parser_qt PRIVATE -Wl,--whole-archive, -Wl,--end-group)
 
 if(ENABLE_STATIC)
 	target_link_options(qc_devcfg_parser_qt PRIVATE -static)
