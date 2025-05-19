@@ -42,10 +42,6 @@ jobs:
 
     - name: 构建
       run: cmake --build build --config Release
-      
-    - name: WinQTDeploy
-      run: |
-        "D:\a\qc-devcfg-parser\Qt\6.8.3\llvm-mingw_64\bin\windeployqt.exe" build\src\qt\qc_devcfg_parser_qt.exe
 
     - name: 创建Tag
       id: set_tag_name
@@ -55,6 +51,7 @@ jobs:
         "TAG_NAME=release-$current_time" | Out-File -FilePath $env:GITHUB_ENV -Append
         "RELEASE_NAME=Release $current_time" | Out-File -FilePath $env:GITHUB_ENV -Append
         Compress-Archive -Path build\* -DestinationPath build.zip
+        "D:\a\qc-devcfg-parser\Qt\6.8.3\llvm-mingw_64\bin\windeployqt.exe" "build\src\qt\qc_devcfg_parser_qt.exe"
 
     - name: 创建发布
       id: create_release
