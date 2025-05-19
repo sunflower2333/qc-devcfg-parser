@@ -45,7 +45,7 @@ target_link_libraries(
 	qc_devcfg_parser_struct
 	qc_devcfg_parser_po
 )
-target_link_libraries(qc_devcfg_parser_qt PRIVATE -Wl,--end-group)
+target_link_libraries(qc_devcfg_parser_qt PRIVATE )
 
 if(ENABLE_STATIC)
 	target_link_options(qc_devcfg_parser_qt PRIVATE -static)
