@@ -21,6 +21,10 @@ jobs:
         arch: 'win64_mingw' # MinGW 8.1 64位
         host: 'windows'
 
+    - name: 安装 gettext
+      run: choco install gettext -y
+      shell: powershell
+      
     - name: 设置 CMake
       uses: lukka/get-cmake@latest
 
