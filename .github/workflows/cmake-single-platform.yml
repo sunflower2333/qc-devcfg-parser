@@ -42,6 +42,14 @@ jobs:
 
     - name: 构建
       run: cmake --build build --config Release
+    
+    - name: 创建Tag
+      id: set_tag_name
+      shell: pwsh
+      run: |
+        $current_time = Get-Date -Format "yy.MM.HH.mm"
+        "TAG_NAME=release-$current_time" | Out-File -FilePath $env:GITHUB_ENV -Append
+        "RELEASE_NAME=Release $current_time" | Out-File -FilePath $env:GITHUB_ENV -Append
 
     - name: 创建发布
       id: create_release
@@ -53,7 +61,7 @@ jobs:
         release_name: ${{ env.RELEASE_NAME }}
         draft: false
         prerelease: true
-        
+
     - name: 发布
       uses: actions/upload-release-asset@v1
       env:
