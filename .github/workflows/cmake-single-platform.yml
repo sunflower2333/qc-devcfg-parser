@@ -25,7 +25,9 @@ jobs:
       uses: msys2/setup-msys2@v2
       with:
         update: true
-        install: mingw-w64-x86_64-gettext
+        install: >-
+          mingw-w64-x86_64-gettext
+          sed
     
     - name: 设置 PATH 以包含 MSYS2 工具
       run: echo "C:\msys64\usr\bin;C:\msys64\mingw64\bin" | Out-File -FilePath $env:GITHUB_PATH -Append
