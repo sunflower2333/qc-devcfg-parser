@@ -17,7 +17,9 @@ jobs:
     - name: 安装 Qt
       uses: jurplel/install-qt-action@v4
       with:
-        arch: 'win64_mingw' # MinGW 8.1 64位
+        target: 'desktop'
+        arch: 'win64_llvm_mingw'
+        use-official: true
         host: 'windows'
 
     - name: 安装 MSYS2
