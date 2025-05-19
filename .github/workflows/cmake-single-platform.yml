@@ -21,10 +21,16 @@ jobs:
         arch: 'win64_mingw' # MinGW 8.1 64位
         host: 'windows'
 
-    - name: 安装 gettext
-      run: choco install gettext -y
+    - name: 安装 MSYS2
+      uses: msys2/setup-msys2@v2
+      with:
+        update: true
+        install: mingw-w64-x86_64-gettext
+    
+    - name: 设置 PATH 以包含 MSYS2 工具
+      run: echo "C:\msys64\usr\bin;C:\msys64\mingw64\bin" | Out-File -FilePath $env:GITHUB_PATH -Append
       shell: powershell
-      
+          
     - name: 设置 CMake
       uses: lukka/get-cmake@latest
 
