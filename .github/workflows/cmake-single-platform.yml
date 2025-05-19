@@ -1,0 +1,31 @@
+name: Build Qt Project (Windows)
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: 检出代码
+      uses: actions/checkout@v4
+
+    - name: 安装 Qt
+      uses: jurplel/install-qt-action@v4
+      with:
+        version: '6.5.3' # 替换为你的 Qt 版本
+        arch: 'win64_msvc2019_64' # 或 win64_mingw81，根据你的项目需要
+        host: 'windows'
+
+    - name: 设置 CMake
+      uses: lukka/get-cmake@v3
+
+    - name: 配置 CMake
+      run: cmake -S . -B build -G "NMake Makefiles" -DCMAKE_PREFIX_PATH="${{ env.Qt5_Dir }}"
+
+    - name: 构建
+      run: cmake --build build --config Release
