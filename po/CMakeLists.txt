@@ -17,10 +17,10 @@ foreach(lang ${languages})
 	)
 	add_custom_command(
 		OUTPUT ${asm_file}
-		COMMAND ${SED_EXECUTABLE}
-			-e s@%FILE%@${gmo_file}@g
-			-e s@%SYMBOL%@_mo_file_${lang}@g
-			${INCBIN_FILE} > ${asm_file}
+		COMMAND "${SED_EXECUTABLE}"
+			-e "s@%FILE%@${gmo_file}@g"
+			-e "s@%SYMBOL%@_mo_file_${lang}@g"
+			"${INCBIN_FILE}" > ${asm_file}
 		DEPENDS ${gmo_file}
 	)
 	list(APPEND asm_files "${asm_file}")
