@@ -50,6 +50,7 @@ jobs:
         $current_time = Get-Date -Format "yy.MM.HH.mm"
         "TAG_NAME=release-$current_time" | Out-File -FilePath $env:GITHUB_ENV -Append
         "RELEASE_NAME=Release $current_time" | Out-File -FilePath $env:GITHUB_ENV -Append
+        Compress-Archive -Path build\* -DestinationPath build.zip
 
     - name: 创建发布
       id: create_release
@@ -61,10 +62,6 @@ jobs:
         release_name: ${{ env.RELEASE_NAME }}
         draft: false
         prerelease: true
-
-    - name: 压缩文件夹
-        run: Compress-Archive -Path build\* -DestinationPath build.zip
-        shell: pwsh
 
     - name: 发布
       uses: actions/upload-release-asset@v1
