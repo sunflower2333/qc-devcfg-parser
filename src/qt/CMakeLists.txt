@@ -44,6 +44,8 @@ target_link_libraries(
 	qc_devcfg_parser_devcfg
 	qc_devcfg_parser_struct
 	qc_devcfg_parser_po
+ 	regex
+  	pcre
 )
 target_link_libraries(qc_devcfg_parser_qt PRIVATE )
 
