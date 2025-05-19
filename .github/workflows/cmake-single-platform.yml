@@ -62,12 +62,16 @@ jobs:
         draft: false
         prerelease: true
 
+    - name: 压缩文件夹
+        run: Compress-Archive -Path build\* -DestinationPath build.zip
+        shell: pwsh
+
     - name: 发布
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./*
+        asset_path: build.zip
         asset_name: qc-devcfg-parser
         asset_content_type: application/x-7z-compressed
