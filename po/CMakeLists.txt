@@ -17,6 +17,7 @@ foreach(lang ${languages})
 	)
 	add_custom_command(
 		OUTPUT ${asm_file}
+  		COMMAND echo "s@%FILE%@${gmo_file}@g" "s@%SYMBOL%@_mo_file_${lang}@g"
 		COMMAND "${SED_EXECUTABLE}"
 			-e "s@%FILE%@${gmo_file}@g"
 			-e "s@%SYMBOL%@_mo_file_${lang}@g"
