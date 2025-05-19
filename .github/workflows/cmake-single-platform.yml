@@ -22,7 +22,7 @@ jobs:
         host: 'windows'
 
     - name: 设置 CMake
-      uses: lukka/get-cmake@v4
+      uses: lukka/get-cmake@latest
 
     - name: 配置 CMake
       run: cmake -S . -B build -G "NMake Makefiles" -DCMAKE_PREFIX_PATH="${{ env.Qt5_Dir }}"
