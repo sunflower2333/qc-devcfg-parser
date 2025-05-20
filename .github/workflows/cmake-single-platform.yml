@@ -50,11 +50,9 @@ jobs:
         $current_time = Get-Date -Format "yy.MM.HH.mm"
         "TAG_NAME=release-$current_time" | Out-File -FilePath $env:GITHUB_ENV -Append
         "RELEASE_NAME=Release $current_time" | Out-File -FilePath $env:GITHUB_ENV -Append
-        Compress-Archive -Path build\* -DestinationPath build.zip
-        ls .\build\src\qt\qc_devcfg_parser_qt.exe
-        ls D:\a\qc-devcfg-parser\Qt\6.8.3\llvm-mingw_64\bin
         D:\a\qc-devcfg-parser\Qt\6.8.3\llvm-mingw_64\bin\windeployqt.exe .\build\src\qt\qc_devcfg_parser_qt.exe
-
+        Compress-Archive -Path build\src\qt\* -DestinationPath build.zip
+      
     - name: 创建发布
       id: create_release
       uses: actions/create-release@v1
@@ -73,5 +71,5 @@ jobs:
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: build.zip
-        asset_name: qc-devcfg-parser
+        asset_name: qc-devcfg-parser.zip
         asset_content_type: application/x-7z-compressed
