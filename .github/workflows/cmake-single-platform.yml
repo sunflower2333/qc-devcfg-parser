@@ -51,7 +51,7 @@ jobs:
         "TAG_NAME=release-$current_time" | Out-File -FilePath $env:GITHUB_ENV -Append
         "RELEASE_NAME=Release $current_time" | Out-File -FilePath $env:GITHUB_ENV -Append
         D:\a\qc-devcfg-parser\Qt\6.8.3\llvm-mingw_64\bin\windeployqt.exe .\build\src\qt\qc_devcfg_parser_qt.exe
-        Compress-Archive -Path build\src\qt\* -DestinationPath build.zip
+        Compress-Archive -Path build\src\qt\* D:\a\qc-devcfg-parser\Qt\6.8.3\llvm-mingw_64\bin\libc++.dll D:\a\qc-devcfg-parser\Qt\6.8.3\llvm-mingw_64\bin\libunwind.dll -DestinationPath build.zip
       
     - name: 创建发布
       id: create_release
